@@ -9,16 +9,19 @@ public class Ball : MonoBehaviour {
 
     public float initialSpeed = 5f;
 
+
+
     float speed;
-
-
     float Launchdirection = -1;
     Vector3 direction;
     bool firstStrike = false;
 
+    Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         StartCoroutine(ResetBall());
     }
 
@@ -26,7 +29,7 @@ public class Ball : MonoBehaviour {
     void Update()
     {
 
-        transform.position += direction * speed * Time.deltaTime;
+        rb.transform.position += direction * speed * Time.deltaTime;
 
         if (transform.position.magnitude > 15f) {
             StartCoroutine(ResetBall());
